@@ -1,9 +1,41 @@
-This repo tries to use YOLO-Pose Estimation of Ultralytics to predict Carina points from X-rays and angiography images.
-dataset_3 folder is the final dataset on which the YOLOv26s and YOLOv26m were trained seperately, the results and the jupyter notebook of training loop is present in folders: yolo-26m_metrics and yolo-26s_metrics.
-If these results are analysed, YOLOv26s, right now, does a better job. 
-The training data(dataset_3) comprises of 313 labelled images, which is small for Pose Estimation but good enough for medical images.
-The predictions made on unseen 200 images, after the training, are stored in predicted_images_s and predicted_images_m respectively for both the models, 115 images were labelled by YOLOv26s, while 75 were labelled by YOLOv26m out of 200, this difference is because of the confidence the model possess.
+# YOLO-Pose Carina Point Detection
 
-conversion.py - script to convert JSON labels from label-studio to yolo format for pose estimation
-conversion_2json.py -  script to convert the predicted labels (YOLO format) to JSON 
-convert2p.py - script to conver the predicted and converted JSON labels to a predictions format accepted by label-studio 
+This repo uses YOLO-Pose Estimation (Ultralytics) to predict Carina points from X-ray and angiography images.
+
+## Dataset
+
+- **`dataset_3`** — the final dataset used for training. Contains **313 labelled images**. This is small for pose estimation in general, but adequate for a medical imaging task.
+- YOLOv26s and YOLOv26m were trained **separately** on this dataset.
+
+## Models
+
+| Model | Metrics & Training Notebook |
+|-------|------------------------------|
+| YOLOv26s | `yolo-26s_metrics/` |
+| YOLOv26m | `yolo-26m_metrics/` |
+
+Each folder contains the training loop notebook and the resulting metrics for that model.
+
+**Current result:** based on the metrics, **YOLOv26s performs better** than YOLOv26m.
+
+## Predictions on Unseen Data
+
+Both models were run on **200 unseen images**, with predictions saved to:
+
+- `predicted_images_s/` — YOLOv26s predictions
+- `predicted_images_m/` — YOLOv26m predictions
+
+| Model | Images Labelled (out of 200) |
+|-------|-------------------------------|
+| YOLOv26s | 115 |
+| YOLOv26m | 75 |
+
+The difference in count is due to each model's confidence threshold — lower-confidence predictions are not retained as labels.
+
+## Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `conversion.py` | Converts JSON labels from Label Studio into YOLO pose estimation format |
+| `conversion_2json.py` | Converts predicted labels (YOLO format) back into JSON |
+| `convert2p.py` | Converts predicted + converted JSON labels into the prediction format accepted by Label Studio |

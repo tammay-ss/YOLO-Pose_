@@ -1,0 +1,24 @@
+path: dataset_2
+
+train: images/train
+val: images/val
+
+names:
+  0: Carina
+
+kpt_shape: [5, 3]
+
+flip_idx: [0, 1, 2, 3, 4]
+
+keypoints:
+  - Carina
+  - Left
+  - Right
+  - Centre2
+  - Centre1
+
+skeleton:
+  - [0, 1]
+  - [0, 2]
+  - [0, 3]
+  - [3, 4]

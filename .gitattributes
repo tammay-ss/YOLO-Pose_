@@ -1,1 +1,2 @@
+*.zip filter=lfs diff=lfs merge=lfs -text
 dataset_696.zip filter=lfs diff=lfs merge=lfs -text
